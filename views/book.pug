@@ -1,0 +1,45 @@
+extends layout
+
+block content
+	.container(style="margin:0 auto")
+		.bookDescArea.genericGradient
+			.mainPart.rwp
+				.bookCard.rwp-crd-25.no-background
+					img.bookCardInCartImg(data-src=booksUrl[bookInfo.id] alt="book" height= "180")
+					ul(style="margin:0.1%;")
+						li.firstLine.bookCardInCartPrice #{ bookInfo.price },-
+						li.firstLine= bookInfo.availibility
+							if bookInfo.availibilityDetails
+								span.spanPointer.badge.badge-light(title=bookInfo.availibilityDetails) ?
+					if parseInt(bookInfo.preview) === 1
+						a(href=previewsUrl[bookInfo.id] target='_blank') Ukázka
+					if (bookInfo.canBeOrdered) === 1
+						form(method="POST" action="/cart/addItem")
+							input(type="hidden" name="bookID" value=bookInfo.id)
+							button.btn.btn-success(style="margin-top:5%;") Do košíku
+								pan.fas.fa-cart-plus
+				.rwp-crd-75.pad-2.cen
+					p(style="padding-left:50px;")
+						h2= bookInfo.name
+						a(href="/author/" + bookInfo.authorID)
+							h5= bookInfo.authorName
+						p= bookInfo.description
+			if otherBooksFromTheAuthor.length != 0
+				h5(style = "padding-top:3%") Více příběhů od autora
+			#cardArea
+				each val in otherBooksFromTheAuthor
+					.bookCard
+						a(href="/book/" + val.id)
+							img(data-src=booksUrl[val.id] alt="book" height= "150")
+						a(href="/book/" + val.id)
+							h3= val.name
+						ul(style="margin:0.1%")
+							li.firstLine.bookCardInCartPrice #{ val.price },-
+							li.firstLine= val.availibility
+								if val.availibilityDetails
+									span.spanPointer.badge.badge-light(title=val.availibilityDetails) ?
+						if parseInt(val.canBeOrdered) === 1
+							form(method="POST" action="/cart/addItem")
+								input(type="hidden" name="bookID" value=val.id)
+								button.btn.btn-success(style="margin-top:5%;") Do košíku
+									pan.fas.fa-cart-plus

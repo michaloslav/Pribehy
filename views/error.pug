@@ -1,0 +1,13 @@
+extends layout
+
+block content
+	#thatAnnoyingDivIGottaPutInToMakeThisDisplayUnderTheNavbar
+		.container(style="margin:0 auto")
+			.bookDescArea.genericGradient
+				h1 Něco se pokazilo
+				h2= error.status
+				.row
+					.bookCard.col-12.col-sm-4(style="height: auto")
+						img(data-src=imagesUrl.error alt="book" width= "150")
+						p Tak toto se opravdu nepovedlo, zde nic bohužel nenajdete, jestli se chcete vrátit na hlavní stránku, tak stiskněte tlačítko pode mnou :)
+						button.but.gre-but(style="margin-top:5%;" onclick="location.href='/';") Zpět

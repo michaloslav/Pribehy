@@ -1,0 +1,450 @@
+html
+	head
+		link(rel="stylesheet", href="/../emails/newOrder/email.css", data-inline)
+	
+	body
+		.underHeader 
+			h3 Objednávka č. #{ orderID }
+		.content 
+			h1 Nová objednávka od 
+			table
+				tr
+					td Jméno:
+					td= orderInfo[1]
+				tr
+					td Telefonní číslo:
+					td= orderInfo[2]
+				tr
+					td Email:
+					td= orderInfo[3]
+				tr
+					td Ulice a číslo domu:
+					td= orderInfo[4]
+				tr
+					td PSČ:
+					td= orderInfo[5]
+				tr
+					td Město/obec:
+					td= orderInfo[6]
+				tr
+					td IČ:
+					td= orderInfo[7]
+			
+			table#itemsTable
+				tr
+					th Polоžka
+					th Počet kusů
+					th Cena
+				each val in itemsInCartInfo
+					tr
+						th
+							.desc 
+								h3= val.name
+						th #{ itemsInCart[val.id] }ks
+						th #{ itemsInCart[val.id] * val.price},-
+				tr
+					th.price Celková cena
+					th(colspan="2") #{ totalPrice },-
+				tr
+					th.price Sleva
+					th(colspan="2") #{ discount },-
+				tr
+					th.price Cena po slevě
+					th(colspan="2") #{ priceAfterDiscount },-
+		.footer
+			h6 Objednáním zboží jste souhlasili s našimi obchodními podmínkami a souhlasu ke zpracování osobních údajů
+				p
+					a(href=imagesUrl.VOP target='_blank') Obchodn&iacute; podm&iacute;nky
+		table(style="width: 842px;")
+			tbody
+				tr
+					td(style="width: 15px;")
+						p  
+					td(style="width: 122px;" colspan="2")
+						p
+							strong Dodavatel:
+					td(style="width: 303px;" colspan="2")
+						p  
+					td(style="width: 121px;")
+						p  
+					td(style="width: 15px;")
+						p  
+					td(style="width: 260px;" colspan="3")
+						p
+							strong Pro forma faktura číslo
+							|  (variabilní symbol):
+				tr(style="height: 20px")
+					td(style="width: 15px;")
+						p  
+					td(style="width: 107px;")
+						p Jiří Raichl
+					td(style="width: 15px;")  
+					td(style="width: 303px;" colspan="2")  
+					td(style="width: 121px;")
+						p  
+					td(style="width: 15px;")
+						p  
+					td(style="width: 127px;")  
+						p= orderID
+					td(style="width: 44px;")  
+					td(style="width: 89px;")  
+				tr
+					td(style="width: 15px;")
+						p  
+					td(style="width: 122px;" colspan="2")
+						p Vrábská 2239B
+					td(style="width: 303px;" colspan="2")  
+					td(style="width: 121px;")
+						p  
+					td(style="width: 15px;")
+						p  
+					td(style="width: 171px;" colspan="2")
+						p Datum vystavení dokladu: #{ orderDate }
+					td(style="width: 89px;")  
+				tr
+					td(style="width: 15px;")
+						p  
+					td(style="width: 546px;" colspan="5")
+						p 250 01 Brandýs nad Labem - Stará Boleslav
+					td(style="width: 15px;")
+						p  
+					td(style="width: 171px;" colspan="2")
+						p
+							strong Odběratel:
+					td(style="width: 89px;")
+						p  
+				tr
+					td(style="width: 15px;")
+						p  
+					td(style="width: 375px;" colspan="3")
+						p IČ 11247568
+					td(style="width: 50px;")  
+					td(style="width: 121px;")
+						p  
+					td(style="width: 15px;")
+						p  
+					td(style="width: 127px;")
+						p= orderInfo[1]
+					td(style="width: 44px;")  
+					td(style="width: 89px;")  
+				tr
+					td(style="width: 15px;")
+						p  
+					td(style="width: 122px;" colspan="2")
+						p DIČ CZ6604170540
+					td(style="width: 303px;" colspan="2")  
+					td(style="width: 121px;")
+						p  
+					td(style="width: 15px;")
+						p  
+					td(style="width: 127px;")
+						p= orderInfo[4]
+					td(style="width: 44px;")  
+					td(style="width: 89px;")  
+				tr
+					td(style="width: 15px;")
+						p  
+					td(style="width: 122px;" colspan="2")
+						p
+							strong Bankovní spojení:
+					td(style="width: 303px;" colspan="2")
+						p  
+					td(style="width: 121px;")
+						p  
+					td(style="width: 15px;")
+						p  
+					td(style="width: 127px;")
+						p #{ orderInfo[5] } #{ orderInfo[6] }
+					td(style="width: 44px;")  
+					td(style="width: 89px;")  
+				tr
+					td(style="width: 15px;")
+						p  
+					td(style="width: 107px;")
+						p Fio banka
+					td(style="width: 15px;")  
+					td(style="width: 303px;" colspan="2")
+						p 
+							strong číslo účtu:
+					td(style="width: 121px;")
+						p 
+							strong 2001424875
+					td(style="width: 15px;")
+						p  
+					td(style="width: 127px;")  
+					td(style="width: 44px;")  
+					td(style="width: 89px;")  
+				tr
+					td(style="width: 15px;")
+						p  
+					td(style="width: 107px;")
+						p  
+					td(style="width: 15px;")
+						p  
+					td(style="width: 303px;" colspan="2")
+						p 
+							strong kód banky:
+					td(style="width: 121px;")
+						p 
+							strong 2010
+					td(style="width: 15px;")
+						p  
+					td(style="width: 127px;")
+						p   
+					td(style="width: 44px;")
+						p  
+					td(style="width: 89px;")
+						p  
+				tr
+					td(style="width: 15px;")
+						p  
+					td(style="width: 107px;")
+						p  
+					td(style="width: 15px;")
+						p  
+					td(style="width: 303px;" colspan="2")
+						p 
+							strong variabilní symbol:
+					td(style="width: 121px;")
+						p 
+							strong= orderID
+					td(style="width: 15px;")
+						p  
+					td(style="width: 127px;")
+						p   
+					td(style="width: 44px;")
+						p  
+					td(style="width: 89px;")
+						p  
+				tr
+					td(style="width: 15px;")
+						p  
+					td(style="width: 546px;" colspan="5" rowspan="2")
+						p
+							em
+								| Dodavatel je zapsán v živnostenském rejstříku pod č.j. PDMUD 5894/2018, sp. značka MUD 1072/2018 ZIV/PA
+					td(style="width: 15px;")
+						p  
+					td(style="width: 171px;" colspan="2")
+						p 
+					td(style="width: 89px;")  
+				tr
+					td(style="width: 15px;")
+						p  
+					td(style="width: 15px;")
+						p  
+					td(style="width: 260px;" colspan="3")
+						p 
+		table(width="842")
+			tbody
+				tr
+					td(width="15")
+						p  
+					td(colspan="2" width="119")
+						p Označení dodávky
+					td(width="105")
+						p  
+					td(width="121")
+						p  
+					td(width="13")
+						p  
+					td(width="62")
+						p  
+					td(width="89")
+						p Cena / ks
+					td(width="89")
+						p Počet ks
+					td(colspan="2" width="100")
+						p
+							strong Cena celkem Kč
+					td(width="64")  
+				each val in itemsInCartInfo
+					tr
+						td(width="15")
+							p  
+						td(width="107")
+							p= val.name
+						td(width="13")
+							p  
+						td(width="105")
+							p  
+						td(width="121")
+							p  
+						td(width="13")
+							p  
+						td(width="62")
+							p  
+						td(width="89")
+							p= val.price
+						td(width="89")
+							p= itemsInCart[val.id]
+						td(colspan="2" width="100")
+							p= itemsInCart[val.id] * val.price
+						td(width="64")  
+				tr
+					td(width="15")
+						p  
+					td(width="107")
+						p  
+					td(width="13")
+						p  
+					td(width="105")
+						p  
+					td(width="121")
+						p  
+					td(width="13")
+						p  
+					td(width="62")
+						p  
+					td(width="89")
+						p  
+					td(width="89")
+						p  
+					td(colspan="2" width="100")
+						p  
+					td(width="64")  
+				tr
+					td(width="15")
+						p  
+					td(width="107")
+						p
+							strong  
+					td(width="13")
+						p
+							strong  
+					td(width="105")
+						p
+							strong  
+					td(width="121")
+						p
+							strong  
+					td(colspan="4" width="253")
+						p
+							strong ČÁSTKA PŘED SLEVOU Kč:
+					td(colspan="2" width="100")
+						p
+							strong #{ totalPrice } Kč
+					td(width="64")  
+				tr
+					td(width="15")
+						p  
+					td(width="107")
+						p
+							strong  
+					td(width="13")
+						p
+							strong  
+					td(width="105")
+						p
+							strong  
+					td(width="121")
+						p
+							strong  
+					td(colspan="4" width="253")
+						p
+							strong Sleva:
+					td(colspan="2" width="100")
+						p
+							strong #{ discount } Kč
+					td(width="64")  
+				tr
+					td(width="15")
+						p  
+					td(width="107")
+						p
+							strong  
+					td(width="13")
+						p
+							strong  
+					td(width="105")
+						p
+							strong  
+					td(width="121")
+						p
+							strong  
+					td(colspan="4" width="253")
+						p
+							strong ČÁSTKA K ÚHRADĚ CELKEM Kč:
+					td(colspan="2" width="100")
+						p
+							strong #{ priceAfterDiscount } Kč
+					td(width="64")   
+				tr
+					td(width="15")
+						p  
+					td(width="107")  
+					td(width="13")  
+					td(width="105")  
+					td(width="121")  
+					td(width="13")  
+					td(width="62")  
+					td(width="89")  
+					td(width="89")  
+					td(width="13")  
+					td(width="87")  
+					td(width="64")  
+				tr
+					td(width="15")
+						p  
+					td(width="107")  
+					td(width="13")  
+					td(width="105")  
+					td(width="121")  
+					td(colspan="4" width="253")
+						p
+							strong Dodavatel není plátcem DPH! Nejedná se o daňový doklad!
+					td(width="13")  
+					td(width="87")  
+					td(width="64")  
+				tr
+					td(width="15")
+						p  
+					td(width="107")  
+					td(width="13")  
+					td(width="105")  
+					td(width="121")  
+					td(width="13")  
+					td(width="62")  
+					td(width="89")  
+					td(width="89")  
+					td(width="13")  
+					td(width="87")  
+					td(width="64")  
+				tr
+					td(width="15")
+						p  
+					td(width="107")  
+					td(width="13")  
+					td(width="105")  
+					td(width="121")  
+					td(colspan="3" width="164")
+						p Pro forma fakturu vystavil:
+					td(width="89")
+						p Jiří Raichl
+					td(width="13")  
+					td(width="87")  
+					td(width="64")  
+				tr
+					td(width="15")
+						p  
+					td(width="107")
+						p  
+					td(width="13")
+						p  
+					td(width="105")
+						p  
+					td(width="121")
+						p  
+					td(width="13")
+						p  
+					td(width="62")
+						p  
+					td(width="89")
+						p  
+					td(width="89")
+						p  
+					td(width="13")
+						p  
+					td(width="87")
+						p  
+					td(width="64")  

@@ -1,0 +1,49 @@
+table{
+	margin-top: 5%;
+	margin-bottom: 5%;
+	width: 100%;
+	outline: 2px solid rgba(0, 120, 0, 0.65);
+}
+
+th{
+	padding: 0.5%;
+}
+
+th:nth-child(1){
+	width: 75%;
+}
+
+th:nth-child(2){
+	width: 15%;
+}
+
+th:nth-child(3){
+	width: 10%;
+}
+
+tr:nth-child(odd){
+	background: rgba(0, 120, 0, 0.3);
+}
+
+tr:nth-child(even){
+	background: rgba(0, 120, 0, 0.2);
+}
+
+tr:nth-child(1){
+	background: rgba(0, 100, 0, 0.4);
+}
+
+tr:nth-last-child(1){
+	background: rgba(0, 100, 0, 0.75);
+	color: #fff;
+}
+
+.desc{
+	float: right;
+	padding: 2%;
+}
+
+.price{
+	text-align: left;
+	padding-left: 5%;
+}

@@ -1,0 +1,72 @@
+extends layout
+block content
+	link(rel='stylesheet', href='/stylesheets/cartRecapTable.css')
+	#cartArea.genericGradient.container
+		h3 Rekapitulace objednávky
+		table
+			tr
+				th Polоžka
+				th Počet kusů
+				th Cena
+			each val in itemsInCartInfo
+				tr
+					th 
+						a(href="/book/" + val.id)
+							img(data-src=booksUrl[val.id] alt="book" height= "150")
+						.desc 
+							a(href="/book/" + val.id)
+								h2= val.name
+							a(href="/author/" + val.authorID style="float: right")
+								h5= val.authorName
+					th
+						span.piecesInTable= itemsInCart[val.id]
+						span ks
+					th.priceTimesPieces #{ itemsInCart[val.id] * val.price},-
+			tr
+				th.price Celková cena
+				th(colspan="2")
+					span#totalPrice
+					span ,-
+			tr
+				th.price Sleva
+				th(colspan="2")
+					span#discount
+					span ,-
+			tr
+				th.price Cena po slevě
+				th(colspan="2")
+					span#priceAfterDiscount
+					span ,-
+		h3 Podrobnosti objednávky
+		form(method="POST" action="/order/new" id="cart2-form")
+			.form-group
+				label(for="nameInput") Jméno:
+				input#nameInput.textInput.form-control(placeholder="Jméno" name="name" value=savedInputs.nameInput required)
+			.form-group
+				label(for="phoneNumberInput") Telefonní číslo:
+				input#phoneNumberInput.textInput.form-control(placeholder="Telefonní číslo" name="phoneNumber" value=savedInputs.phoneNumberInput required)
+			.form-group
+				label(for="emailInput") Email:
+				input#emailInput.textInput.form-control(placeholder="Email" name="email" value=savedInputs.emailInput required)
+			.form-group
+				label(for="streetAndHouseNumberInput") Ulice a číslo domu:
+				input#streetAndHouseNumberInput.textInput.form-control(placeholder="Ulice a číslo domu" name="streetAndHouseNumber" value=savedInputs.streetAndHouseNumberInput required)
+			.form-group
+				label(for="zipCodeInput") PSČ:
+				input#zipCodeInput.textInput.form-control(placeholder="PSČ" name="zipCode" value=savedInputs.zipCodeInput required)
+			.form-group
+				label(for="cityInput") Město/obec:
+				input#cityInput.textInput.form-control(placeholder="Město/obec" name="city" value=savedInputs.cityInput required)
+			.form-group
+				label(for="companyIdInput") IČ: (při nákupu na firmu)
+				input#companyIdInput.textInput.form-control(placeholder="IČ" name="companyID" value=savedInputs.companyIdInput )
+			.rwp-crd-100.pad-2
+				label.chk-lst 
+					a(href=imagesUrl.VOP target="_blank") Četl/a jsem a souhlasím s všeobecnými obchodními podmínkami (link) a potvrzením objednávky vyjadřuji souhlas s uzavřením kupní smlouvy
+					input(type='checkbox' required data-cy="agreeWithTermsAndConditions")
+					span.chk
+				label.chk-lst Souhlasím se zpracováním osobních údajů ve smyslu všeobecných obchodních podmínek
+					input(type='checkbox' required data-cy="agreeWithPrivacyPolicy")
+					span.chk
+			button.btn.btn-success(type="submit" style="float:right") Objednat
+			a.btn.btn-danger(href="/cart/1") Zpět

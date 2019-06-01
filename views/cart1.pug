@@ -1,0 +1,48 @@
+extends layout
+
+block content
+	#cartArea.genericGradient
+		if itemsInCartInfo && itemsInCartInfo != {}
+			h3 Příběhy v košíku
+			each val in itemsInCartInfo
+				.bookCardInCart
+					.mainPart
+						a(href="/book/" + val.id)
+							img.bookCardInCartImg(data-src=booksUrl[val.id] alt="book" height= "180")
+						.bookCardInCartText
+							a(href="/book/" + val.id)
+								h2= val.name
+							a(href="/author/" + val.authorID)
+								h5= val.authorName
+							p(style="overflow:auto; height:100px;")= val.description
+						ul.bookCardInCartPricingUl
+							li
+								form(method="POST" action="/cart/removeItem")
+									input(type="hidden" name="bookID" value=val.id)
+									button.bookCardInCartBtnBase.bookCardInCartBtnDelete
+										i.fas.fa-trash-alt
+							li.firstLine= val.availibility
+								if val.availibilityDetails
+									span.spanPointer.badge.badge-light.js-tooltip(title=val.availibilityDetails data-toggle="tooltip") ?
+							li.firstLine
+								input.piecesInput(type="number" value=itemsInCart[val.id] min="1" id="piecesInput_" + val.id data-cy="piecesInput")
+							li.firstLine.bookCardInCartPrice
+								span.priceTimesPieces(id="priceTimesPieces_" + val.id data-price-per-item=val.price)= val.price * itemsInCart[val.id]
+								span ,-
+			.bookCardInCartPrice(style="width:50%;margin:0;padding:0%;margin-top:5%;")
+				h4 Celková cena: 
+					span#totalPrice
+					span ,-
+				h4 Sleva: 
+					span#discount
+					span ,- (
+					span#discountPercentage
+					span %) 
+					span.spanPointer.badge.badge-light.js-tooltip(title="1 kniha - 0%, 2 knihy - 10%, 3 a více - 15%" data-toggle="tooltip") ?
+				h4 Cena po slevě: 
+					span#priceAfterDiscount
+					span ,-
+			a.btn.btn-success(style="float:right;" href="/cart/2" id="cart1-submit") K pokladně
+			a.btn.btn-danger(href="/allBooks") Pokračovat ve výběru
+		else
+			h3 Váš košík je prázdný

@@ -1,0 +1,17 @@
+.js-tooltip {
+    position: relative;
+}
+
+.js-tooltip:hover::before {
+    position: absolute;
+    top: 2rem;
+    right: -80px;
+    content: attr(title);
+    background: #252525;
+    padding: .5rem;
+    color: #fff;
+    border-radius: 5px;
+    overflow: hidden;
+    white-space: normal;
+    width: 180px;
+}

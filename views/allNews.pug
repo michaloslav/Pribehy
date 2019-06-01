@@ -1,0 +1,12 @@
+extends layout
+
+block content
+	.container(style="margin:0 auto")
+		.bookDescArea.genericGradient
+			.row
+				each val in allNewsInfo
+					.col-sm-4(style="background: url(" +newsUrl[val.id] + ");background-size:cover;margin:0;padding:0;").bookCard
+						.bookCardCaption
+							h3= val.name
+							h6= val.date
+						.genericGradient(style="padding:2%; height:100%;")= val.description

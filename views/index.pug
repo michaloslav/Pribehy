@@ -1,0 +1,57 @@
+extends layout
+
+block content
+	#home
+		#homeGradient!= pageText.home
+			br
+			a(href="#about" style = "text-align:center;padding:10%;" data-allow-navScroll)
+				h4 číst více...
+	#books.genericGradient= "Please feel free to choose books from our great list".genericGradient
+		#cardArea.m-auto
+			each val in featuredBooks
+				.bookCard.d-flex.flex-wrap
+						a(href="book/" + val.id)
+						img.m-auto.d-block(data-src=booksUrl[val.id] alt="book" height= "150")
+						a.w-100.mt-2.d-block(href="book/" + val.id)
+							h3= val.name
+						a.w-100.d-block(href="author/" + val.authorID)
+							h5= val.authorName
+						ul.w-100.d-block
+							li.firstLine.bookCardInCartPrice.mr-2 #{ val.price },-
+							li.firstLine= val.availibility
+								if val.availibilityDetails
+									span.spanPointer.badge.badge-light.js-tooltip(title=val.availibilityDetails data-toggle="tooltip") ?
+						if parseInt(val.preview) === 1
+							a.w-100.mb-2.d-block(href=previewsUrl[val.id] target='_blank') Ukázka
+						if parseInt(val.canBeOrdered) === 1
+							form.align-self-end(method="POST" action="/cart/addItem")
+								input(type="hidden" name="bookID" value=val.id)
+								button.btn.btn-success(data-cy="addToCart") Do košíku
+									pan.fas.fa-cart-plus.ml-2
+		if showMoreBooks
+			a(href="/allBooks")
+				h4(style = "text-align:center;padding:2.5%;") Další příběhy...
+	#news
+		#carouselNews.carousel.slide(data-ride='carousel')
+			ol.carousel-indicators
+				each val, index in featuredNews
+					li.cursor-pointer(data-target='#carouselNews', data-slide-to=index class=parseInt(index) === 0 ? "active" : "" data-cy="carouselIndicator")
+			.carousel-inner
+				each val, index in featuredNews
+					.carousel-item(style=`background-image: url(${newsUrl[val.id]}); background-size: cover;`
+						class=parseInt(index) === 0 ? "active" : "", data-cy="news-carousel-item")
+						.carousel-caption
+							h5= val.name
+							p= val.description
+			a.carousel-control-prev(href='#carouselNews', role='button', data-slide='prev', data-cy="news-carousel-slide-prev")
+				span.carousel-control-prev-icon(aria-hidden='true')
+				span.sr-only Previous
+			a.carousel-control-next(href='#carouselNews', role='button', data-slide='next', data-cy="news-carousel-slide-next")
+				span.carousel-control-next-icon(aria-hidden='true')
+				span.sr-only Next
+				if showMoreNews
+					a(href="/allNews" style = "text-align:right;position:absolute;bottom:0;width:100%;font-weight:bold;")
+						h5 Další aktuality...
+	#about(style="background: url(" + imagesUrl.tofanaAbout + ") no-repeat fixed top / cover;")
+		#aboutGradient
+			#aboutText!= pageText.about

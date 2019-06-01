@@ -1,0 +1,28 @@
+extends layout
+
+block content
+	.container(style="margin:0 auto")
+		.bookDescArea.genericGradient
+			.mainPart
+				img.bookCardInCartImg(src=authorsUrl[authorInfo.id] alt="author" height= "180")
+				.bookCardInCartText
+					h2= authorInfo.name
+					p= authorInfo.description
+			h5(style = "padding-top:3%") Autorovy příběhy:
+			#cardArea
+				each val in booksFromTheAuthor
+					.bookCard(style="height: 400px; overflow:hidden")
+						a(href="/book/" + val.id)
+							img(data-src=booksUrl[val.id] alt="book" height= "150")
+						a(href="/book/" + val.id)
+							h3= val.name
+						p= val.description
+						//-ul(style="margin:0.1%")
+							li.firstLine.bookCardInCartPrice #{ val.price },-
+							li.firstLine= val.availibility
+								if val.availibilityDetails
+									span.spanPointer.badge.badge-light(title=val.availibilityDetails) ?
+						//-form(method="POST" action="/cart/addItem")
+							input(type="hidden" name="bookID" value=val.id)
+							button.btn.btn-success(style="margin-top:5%;") Do košíku
+								pan.fas.fa-cart-plus

@@ -1,0 +1,88 @@
+doctype html
+html(lang="cs")
+	head
+		title Příběhy
+		meta(name="viewport" content="width=device-width, initial-scale=1")
+		meta(charset="utf-8")
+		meta(name="description" content="Jmenujeme se Jirka Raichl a Mirek Vostrý, jsme autoři-prozaici, Už od mládí škádlíme múzy, a před pár lety jsme začali jeden druhého inspirovat k publikování svých textů.")
+		meta(name="keywords" content="Tofana, Nakladatelství Tofana, Nakladatelství, Knihy, Příběhy, Jiří Raichl, Šimon Raichl, Michael Farník, Mirek Vostrý")
+		meta(http-equiv="Content-language" content="cs")
+		meta(name="author" content="Frontend: Šimon Raichl, Backend: Michael Farník")
+		link(rel="manifest" href="manifest.json")
+		meta(name="mobile-web-app-capable" content="yes")
+		meta(name="apple-mobile-web-app-capable" content="yes")
+		meta(name="application-name" content="Pribehy")
+		meta(name="apple-mobile-web-app-title" content="Pribehy")
+		meta(name="theme-color" content="#DEDCD5")
+		meta(name="msapplication-navbutton-color" content="#DEDCD5")
+		meta(name="apple-mobile-web-app-status-bar-style" content="black-translucent")
+		meta(name="msapplication-starturl" content=".")
+		link(rel='stylesheet', href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous")
+		link(rel='stylesheet', href='/stylesheets/ve-runner.css')
+		link(rel='stylesheet', href='/stylesheets/style.css')
+		link(rel='stylesheet', href='/stylesheets/tooltip.css')
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		script(async src="https://www.googletagmanager.com/gtag/js?id=UA-135074046-1")
+		script.
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+			gtag('config', 'UA-135074046-1');
+	body(data-spy="scroll" data-target=".navbar" data-offset="50" data-current-page=active
+		style=`background: url(${imagesUrl.back}) no-repeat fixed top / cover;`)
+		nav.navbar.navbar-expand-lg.navbar-light.fixed-top.genericGradient
+			if active === "index"
+				a.navbar-brand(href="#" onclick="navScroll('#home'); return false;")
+					img(src=imagesUrl.tofanaLogo alt="tofanaLogo" style="height: 30px")
+			else
+				a.navbar-brand(href="/")
+					img(src=imagesUrl.tofanaLogo alt="tofanaLogo" style="height: 30px")
+			button.navbar-toggler(type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation")
+				span.navbar-toggler-icon
+			.collapse.navbar-collapse#navbarSupportedContent
+				ul.navbar-nav.mr-auto
+					li.nav-item
+						if active === "index"
+							a.nav-link(href="#home" data-allow-navScroll data-scrollspy-anchor) Domov PŘÍBEHů
+						else
+							a.nav-link(href="/#home") Domov PŘÍBEHů
+					li.nav-item
+						if active === "index"
+							a.nav-link(href="#books" data-allow-navScroll data-scrollspy-anchor) Knihovna PŘÍBĚHů
+						else
+							a.nav-link(href="/#books") Knihovna PŘÍBĚHů
+					li.nav-item
+						if active === "index"
+							a.nav-link(href="#news" data-allow-navScroll data-scrollspy-anchor data-cy="nav-news") Aktuality s PŘÍBĚHem
+						else
+							a.nav-link(href="/#news") Aktuality s PŘÍBĚHem
+					li.nav-item
+						if active === "index"
+							a.nav-link(href="#about" data-allow-navScroll data-scrollspy-anchor) Náš PŘÍBĚH
+						else
+							a.nav-link(href="/#about") Náš PŘÍBĚH
+					li.nav-item
+						a.nav-link(href=imagesUrl.VYDANI target='_blank') Stvořte vlastní PŘÍBĚH
+				a.nav-link(href="/cart/1")
+					img(src=imagesUrl.cartIcon alt="cartIcon" style="width: 30px;")
+					if itemsInCart && Object.keys(itemsInCart).length
+						span.badge.badge-light= Object.keys(itemsInCart).length
+		if justOrdered
+			#justOrderedAlert.alert.alert-success.alert-dismissible.fade.show(role = "alert") Zboží bylo úspěšně objednáno. Podrobnosti najdete v infomačním e-mailu.
+				button(type="button" class="close" data-dismiss="alert" aria-label="Close")
+					span(aria-hidden="true") &times;
+		.homeContainer
+			block content
+		footer.font-weight-light.genericGradient(class=active === "index" ? "my-0" : "") 
+			| 2018 &copy; 
+			a(href='http://rs.9e.cz/', target='_blank') Frontend: Šimon Raichl
+			| , 
+			a(href='https://github.com/michaloslav' target='_blank') Backend: Michael Farník
+			br
+			a(href=imagesUrl.VOP target='_blank') Obchodn&iacute; podm&iacute;nky a ochrana osobních údajů
+			br
+			a(href=imagesUrl.DOD_UHR target='_blank') Vše o nákupu
+			br
+			| Provozovatel: Jiří Raichl, Vrábská 2239B, 25001 Brandýs nad Labem – Stará Boleslav, IČ 11247568, DIČ CZ6604170540, zapsán v živnostenském rejstříku pod č.j. PDMUD 5894/2018, sp. značka MUD 1072/2018 ZIV/PA
+		link(rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css", integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt", crossorigin="anonymous")
+		script(src="/dist/js/bundle.js" async defer)

@@ -1,0 +1,21 @@
+{
+  "dir" : "ltr",
+  "lang" : "cs",
+  "name" : "Příběhy",
+  "scope" : "/",
+  "display" : "browser",
+  "start_url" : ".",
+  "short_name" : "Pribehy",
+  "theme_color" : "#EBE9E2",
+  "description" : "Jmenujeme se Jirka Raichl a Mirek Vostrý, jsme autoři-prozaici, Už od mládí škádlíme múzy, a před pár lety jsme začali jeden druhého inspirovat k publikování svých textů.",
+  "orientation" : "any",
+  "background_color" : "#E6DFD4",
+  "related_applications" : "",
+  "prefer_related_applications" : "false",
+  "icons" : [
+    {
+      "src": "https://pribehy.herokuapp.com/favicon.ico",
+      "sizes": "32x32"
+    }
+  ]
+}
