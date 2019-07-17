@@ -3,6 +3,6 @@ export default class Lazyload {
         return [{
             rootMargin: "150px",
             placeholder: location.origin + "/images/book_placeholder.svg"
-        }, "[alt=book]"];
+        }, "[alt=book]", true];
     }
 }
