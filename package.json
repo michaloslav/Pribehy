@@ -30,7 +30,7 @@
     "morgan": ">=1.9.1",
     "mysql": "2.16.0",
     "promise-polyfill": "8.1.0",
-    "pug": "2.0.3",
+    "pug": "3.0.1",
     "string-to-stream": "^1.1.1",
     "terser-webpack-plugin": "1.2.3",
     "webpack": "4.30.0",
